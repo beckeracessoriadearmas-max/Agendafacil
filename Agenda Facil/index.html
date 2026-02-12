@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agenda Fácil</title>
+
+<link rel="stylesheet" href="css/estilo.css">
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+<body>
+
+<div class="topo">
+📅 Agenda Fácil
+<button onclick="logout()" style="float:right;">Sair</button>
+</div>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+<div class="card">
+<h3>📊 Dashboard</h3>
+
+<p>Total do mês: <strong id="totalMes">R$ 0,00</strong></p>
+<p>Diárias feitas: <strong id="totalDiarias">0</strong></p>
+
+</div>
+
+<!-- CALENDÁRIO -->
+<div class="card">
+<h3>📆 Calendário</h3>
+
+<div class="calendario" id="calendario"></div>
+
+</div>
+
+<!-- MENU -->
+<div class="card">
+<button class="botao" onclick="location.href='pages/nova-diaria.html'">
+➕ Nova Diária
+</button>
+</div>
+
+<div class="card">
+<button class="botao" onclick="location.href='pages/clientes.html'">
+👥 Clientes
+</button>
+</div>
+
+<div class="card">
+<button class="botao" onclick="location.href='pages/financeiro.html'">
+💰 Financeiro
+</button>
+</div>
+
+<div class="card">
+<button class="botao" onclick="location.href='pages/configuracoes.html'">
+⚙️ Configurações
+</button>
+</div>
+
+</div>
+
+<button class="botao-add" onclick="location.href='pages/nova-diaria.html'">
++
+</button>
+<!-- ===== MODAL SERVIÇOS ===== -->
+<div id="modal" class="modal">
+  <div class="modal-conteudo">
+
+    <span class="fechar" onclick="fecharModal()">×</span>
+
+    <h3 id="tituloModal">Serviços do dia</h3>
+
+    <div id="listaServicos"></div>
+
+    <button class="botao" onclick="location.href='pages/nova-diaria.html'">
+      ➕ Nova Diária
+    </button>
+
+  </div>
+</div>
+<script src="js/app.js"></script>
+
+<script>
+
+// ===== LOGOUT (AJUSTE 4) =====
+function logout(){
+    localStorage.removeItem("usuarioLogado");
+    window.location.href = "login.html";
+}
+
+// ===== CALENDARIO =====
+function gerarCalendario(){
+
+let calendario=document.getElementById("calendario");
+calendario.innerHTML="";
+
+for(let i=1;i<=31;i++){
+
+let dia=document.createElement("div");
+dia.className="dia";
+dia.innerText=i;
+dia.onclick=()=>{
+    let data="2026-02-"+String(i).padStart(2,'0');
+    abrirModal(data);
+};
+
+calendario.appendChild(dia);
+
+}
+
+}
+
+gerarCalendario();
+
+// ===== PWA =====
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+<script src="js/topo.js"></script>
+</body>
+</html>
