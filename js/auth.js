@@ -5,7 +5,9 @@ let pass = document.getElementById("pass").value;
 
 if(user === "admin" && pass === "123"){
 
-localStorage.setItem("logado","true");
+// PADRÃO NOVO
+localStorage.setItem("usuarioLogado", user);
+
 window.location = "index.html";
 
 }else{
@@ -18,17 +20,17 @@ alert("Login inválido");
 
 function verificarLogin(){
 
-if(localStorage.getItem("logado") !== "true"){
+const usuario = localStorage.getItem("usuarioLogado");
 
+if(!usuario){
 window.location = "../login.html";
-
 }
 
 }
 
 function sair(){
 
-localStorage.removeItem("logado");
+localStorage.removeItem("usuarioLogado");
 window.location = "../login.html";
 
 }
