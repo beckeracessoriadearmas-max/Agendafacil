@@ -1,19 +1,23 @@
-function carregarTopo(){
+document.addEventListener("DOMContentLoaded", function(){
 
-    const topo = document.querySelector(".topo");
+    const usuario = localStorage.getItem("usuarioLogado");
 
-    if(!topo) return;
+    if(usuario){
 
-    const usuario = "Admin";
+        const topo = document.createElement("div");
+        topo.className = "topo";
 
-    topo.innerHTML = `
-        <div>📅 Agenda Fácil</div>
-        <div>
-            👤 ${usuario}
-            <button onclick="sair()" class="botao">Sair</button>
-        </div>
-    `;
+        topo.innerHTML = `
+            <div class="menu">
+                <a href="../index.html">Início</a>
+                <a href="nova-diaria.html">Nova Diária</a>
+                <a href="financeiro.html">Financeiro</a>
+                <a href="configuracoes.html">Configurações</a>
+                <button onclick="logout()">Sair</button>
+            </div>
+        `;
 
-}
+        document.body.prepend(topo);
+    }
 
-document.addEventListener("DOMContentLoaded", carregarTopo);
+});
