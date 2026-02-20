@@ -110,4 +110,29 @@ function abrirModal(data){
 // ===== FECHAR MODAL =====
 function fecharModal(){
     document.getElementById("modal").style.display="none";
+
 }
+// ===============================
+// VERIFICA LOGIN AUTOMATICAMENTE
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // páginas que NÃO precisam de login
+    const paginasPublicas = [
+        "login.html",
+        "/",
+        ""
+    ];
+
+    let paginaAtual = window.location.pathname.split("/").pop();
+
+    if (!paginasPublicas.includes(paginaAtual)) {
+
+        if (localStorage.getItem("logado") !== "true") {
+            window.location.href = "../login.html";
+        }
+
+    }
+
+});
