@@ -1,36 +1,24 @@
-function login(){
+function login() {
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("pass").value;
 
-let user = document.getElementById("user").value;
-let pass = document.getElementById("pass").value;
-
-if(user === "admin" && pass === "123"){
-
-// PADRÃO NOVO
-localStorage.setItem("usuarioLogado", user);
-
-window.location = "index.html";
-
-}else{
-
-alert("Login inválido");
-
-}
-
+    if(user === "admin" && pass === "1234"){
+        localStorage.setItem("usuarioLogado", user);
+        window.location.href = "index.html";
+    } else {
+        alert("Usuário ou senha inválidos");
+    }
 }
 
 function verificarLogin(){
+    const usuario = localStorage.getItem("usuarioLogado");
 
-const usuario = localStorage.getItem("usuarioLogado");
-
-if(!usuario){
-window.location = "../login.html";
+    if(!usuario){
+        window.location.href = "../login.html";
+    }
 }
 
-}
-
-function sair(){
-
-localStorage.removeItem("usuarioLogado");
-window.location = "../login.html";
-
+function logout(){
+    localStorage.removeItem("usuarioLogado");
+    window.location.href = "../login.html";
 }
